@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.location.LocationManager;
 
+import com.mioffers.malloffer.activities.MainActivity;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -24,6 +26,12 @@ public class AppModule {
     @Provides
     @Singleton
     public Application providesApplication() {
+        return this.application;
+    }
+
+    @Provides
+    @Singleton
+    public Context providesContext() {
         return this.application;
     }
 
