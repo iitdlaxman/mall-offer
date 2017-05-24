@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -23,6 +24,7 @@ import com.mioffers.malloffer.dagger.component.MallOfferComponent;
 import com.mioffers.malloffer.dagger.module.AppModule;
 import com.mioffers.malloffer.dagger.module.MallOfferModule;
 import com.mioffers.malloffer.exceptions.ExceptionHandler;
+import com.mioffers.malloffer.navDrawer.DrawerHandler;
 
 import javax.inject.Inject;
 
@@ -41,16 +43,20 @@ public class MainActivity extends AppCompatActivity
     @Inject
     FireBaseHandler fireBaseHandler;
 
+    @Inject
+    DrawerHandler drawerHandler;
+
     public static String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
         Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
         MallOfferComponent component = DaggerMallOfferComponent.builder()
-                .appModule(new AppModule(this.getApplication()))
+                .appModule(new AppModule(this.getApplication(), this))
                 .mallOfferModule(new MallOfferModule(""))
                 .build();
         component.inject(this);
@@ -59,16 +65,10 @@ public class MainActivity extends AppCompatActivity
 
         netHandler.checkNet();
 
-
-
-
-
-
-        setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*Snackbar.make(toolbar, locationHandler.a, Snackbar.LENGTH_LONG)
+        /*Snackbar.make(toolbar, drawerHandler.temp, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();*/
 
 
@@ -120,19 +120,19 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
+//        if (id == R.id.nav_camara) {
+//            // Handle the camera action
+//        } else if (id == R.id.nav_gallery) {
+//
+//        } else if (id == R.id.nav_slideshow) {
+//
+//        } else if (id == R.id.nav_manage) {
+//
+//        } else if (id == R.id.nav_share) {
+//
+//        } else if (id == R.id.nav_send) {
+//
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

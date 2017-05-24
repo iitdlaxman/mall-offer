@@ -1,5 +1,6 @@
 package com.mioffers.malloffer.dagger.module;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.location.LocationManager;
@@ -19,8 +20,12 @@ public class AppModule {
 
     private final Application application;
 
-    public AppModule(Application application) {
+    private final Activity activity;
+
+    public AppModule(Application application,
+                     Activity activity) {
         this.application = application;
+        this.activity = activity;
     }
 
     @Provides
@@ -35,4 +40,9 @@ public class AppModule {
         return this.application;
     }
 
+    @Provides
+    @Singleton
+    public Activity providesActivity() {
+        return this.activity;
+    }
 }
