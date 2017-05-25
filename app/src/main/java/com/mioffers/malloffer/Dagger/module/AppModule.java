@@ -20,10 +20,10 @@ public class AppModule {
 
     private final Application application;
 
-    private final Activity activity;
+    private final MainActivity activity;
 
     public AppModule(Application application,
-                     Activity activity) {
+                     MainActivity activity) {
         this.application = application;
         this.activity = activity;
     }
@@ -42,7 +42,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public Activity providesActivity() {
+    public MainActivity providesActivity() {
         return this.activity;
     }
 }

@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 
 import com.mioffers.malloffer.R;
+import com.mioffers.malloffer.activities.MainActivity;
 import com.mioffers.malloffer.core.connectivity.FireBaseHandler;
 import com.mioffers.malloffer.core.connectivity.LocationHandler;
 import com.mioffers.malloffer.core.connectivity.NetHandler;
@@ -67,7 +68,7 @@ public class MallOfferModule {
 
     @Provides
     @Singleton
-    DrawerHandler providesNavDrawer(Activity activity) {
+    DrawerHandler providesNavDrawer(MainActivity activity) {
         NavigationView navigationView = (NavigationView) activity.findViewById(R.id.nav_view);
         Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
         DrawerLayout drawer = (DrawerLayout) activity.findViewById(R.id.drawer_layout);
